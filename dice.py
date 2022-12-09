@@ -2,22 +2,27 @@ import random
 
 class Dice:
 
-    def __init__(self, sides):
+    def __init__(self, num, sides):
+        self.num = num
         self.sides = sides
-
     def roll(self):
-       return random.randint(1, self.sides)
+        self.result = 0
+        for _ in range(self.num):
+            self.result = self.result + random.randint(1, self.sides)
+        return self.result
+    def show_dice(self) -> str:
+        return f"{self.num}d{self.sides}"
 
-d20 = Dice(20)
-d12 = Dice(12)
-d10 = Dice(10)
-d8 = Dice(8)
-d6 = Dice(6)
-d4 = Dice(4)
+    def __repr__(self):
+        return f"{self.roll()}"
 
 
 if __name__ == "__main__":
-    print(d20.roll())       #Test
-    print(d4.roll())
-    print(d8.roll())
-    print(d10.roll())
+    dc = [Dice(3, 6) for _ in range(5)]
+    for d in dc:
+        print("=======")
+        print(d)
+
+
+
+
