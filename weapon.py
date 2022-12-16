@@ -3,18 +3,18 @@ from dice import Dice
 class Weapon:
 
     def __init__(self, dice, num_rolls, name, rarity, cost):
-        self._dice = dice
+        self.dice = dice
         self.num_rolls = num_rolls
         self.name = name
         self.rarity = rarity
         self.cost = cost
 
-    @property
+    #@property
     def damage(self):
-        return self._dice.roll(self.num_rolls)
+        return self.dice.roll(self.num_rolls)
 
     def __repr__(self):
-        return f"\n{self.name}, damage: {self.num_rolls}d{self._dice}, rarity: {self.rarity}, cost: {self.cost}"
+        return f"\n{self.name}, damage: {self.num_rolls}d{self.dice}, rarity: {self.rarity}, cost: {self.cost}"
 
 weapons = [
     Weapon(Dice(6), 1, "Long sword", 0.5, 100),
@@ -24,6 +24,25 @@ weapons = [
     Weapon(Dice(4), 1, "Dagger", 0.4, 50)
 ]
 
+
+class Armor():
+
+    def __init__(self, base_ac, category, name):
+        self.base_ac = base_ac
+        self.category = category
+        self.name = name
+
+    def __repr__(self):
+        return f"\n{self.name}, base AC = {self.base_ac}"
+
+
+armors = [
+    Armor(11, "Light", "Leather armor"),
+    Armor(13, "Medium", "Chain shirt"),
+    Armor(15, "Medium", "Half plate"),
+    Armor(18, "Heavy", "Plate armor")
+]
+
+
 if __name__ == "__main__":
-    weapons[0].cost = 1
-    print(weapons[0])
+    print(weapons[0].damage())
