@@ -1,11 +1,12 @@
 import random
 
+
 class Dice:
 
     def __init__(self, sides):
         self.sides = sides
 
-    def roll(self, num = 1):
+    def roll(self, num=1):
         result = 0
         for _ in range(num):
             result = result + random.randint(1, self.sides)
@@ -20,7 +21,3 @@ if __name__ == "__main__":
     for d in dc:
         print("=======")
         print(d.roll())
-
-
-
-

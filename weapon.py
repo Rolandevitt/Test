@@ -1,5 +1,6 @@
 from dice import Dice
 
+
 class Weapon:
 
     def __init__(self, dice, num_rolls, name, rarity, cost):
@@ -9,12 +10,12 @@ class Weapon:
         self.rarity = rarity
         self.cost = cost
 
-    #@property
     def damage(self):
         return self.dice.roll(self.num_rolls)
 
     def __repr__(self):
         return f"\n{self.name}, damage: {self.num_rolls}d{self.dice}, rarity: {self.rarity}, cost: {self.cost}"
+
 
 weapons = [
     Weapon(Dice(6), 1, "Long sword", 0.5, 100),
@@ -25,7 +26,7 @@ weapons = [
 ]
 
 
-class Armor():
+class Armor:
 
     def __init__(self, base_ac, category, name):
         self.base_ac = base_ac

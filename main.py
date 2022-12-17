@@ -10,6 +10,3 @@ if __name__ == "__main__":
         print("")
         w.run()
         print(w)
-
-
-
