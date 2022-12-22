@@ -23,20 +23,25 @@ class Weapon:
 #     Weapon(4, 2, "Sellsword Twinblades", 200),
 #     Weapon(4, 1, "Dagger", 50)
 # ]
-weapons_json = """
-{"weapons": [
-    {"dice": 6, "num_rolls": 1, "name": "Long sword", "cost": 100},
-    {"dice": 6, "num_rolls": 2, "name": "Wolf Knight's Greatsword", "cost": 800},
-    {"dice": 12, "num_rolls": 1, "name": "Uchigatana", "cost": 500},
-    {"dice": 4, "num_rolls": 2, "name": "Sellsword Twinblades", "cost": 200},
-    {"dice": 4, "num_rolls": 1, "name": "Dagger", "cost": 50}
-]}
-"""
+config = {"weapons": [
+        {"dice": 6, "num_rolls": 1, "name": "Long sword", "cost": 100},
+        {"dice": 6, "num_rolls": 2, "name": "Wolf Knight's Greatsword", "cost": 800},
+        {"dice": 12, "num_rolls": 1, "name": "Uchigatana", "cost": 500},
+        {"dice": 4, "num_rolls": 2, "name": "Sellsword Twinblades", "cost": 200},
+        {"dice": 4, "num_rolls": 1, "name": "Dagger", "cost": 50}
+    ]},
+{"armors": [
+        {"base_ac": 11, "weight": "light", "name": "Leather armor"},
+        {"base_ac": 13, "weight": "medium", "name": "Chain shirt"},
+        {"base_ac": 15, "weight": "medium", "name": "Half plate"},
+        {"base_ac": 18, "weight": "heavy", "name": "Plate armor"}
+    ]}
 
-weapons = json.loads(weapons_json)
+
+# weapons = json.loads(weapons_json)
 
 with open('config.json', 'w') as file:
-    json.dump(weapons_json, file, indent=2)
+    json.dump(config, file, indent=2)
 
 
 class Armor:
@@ -50,13 +55,9 @@ class Armor:
         return f"\n{self.name}, base AC = {self.base_ac}"
 
 
-armors = [
-    Armor(11, "Light", "Leather armor"),
-    Armor(13, "Medium", "Chain shirt"),
-    Armor(15, "Medium", "Half plate"),
-    Armor(18, "Heavy", "Plate armor")
-]
-
-
 if __name__ == "__main__":
-    print(weapons)
+    with open('config.json') as file:
+        data = json.load(file)
+        print(data(["weapons"][0]["name"]))
+        a = {"s": 1, "a": 2}
+        print(data.items())
