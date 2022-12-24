@@ -9,7 +9,7 @@ class World:
         self.name = f"world_{World.id}"
         World.id += 1
 
-        self.monsters = [Monster() for _ in range(5)]
+        self.monsters = [Monster() for _ in range(8)]
         self.fighters = [Fighter() for _ in range(5)]
 
     def __repr__(self) -> str:
@@ -24,7 +24,7 @@ class World:
                 fighter.attack(random.choice(self.monsters))
 
         self.monsters = [monster for monster in self.monsters if monster.health > 0]
-        print(self.monsters)
+        # print(self.monsters)
 
         for monster in self.monsters:
             if len(self.monsters) > 0:
@@ -36,7 +36,7 @@ class World:
             fighter.exp += 100
             fighter.lvl_up()
 
-        # print(self.monsters)
+        # print(self.fighters)
 
     def run(self):
         while len(self.monsters) > 0 and len(self.fighters) > 0:

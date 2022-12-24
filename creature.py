@@ -11,7 +11,7 @@ class Creature:
         self.ac = 11  # armor class
         self.exp = 0
         self.lvl = 1
-        self.weapon = weapons[random.randint(0, (len(weapons) - 1))]
+        self.weapon = Weapon(random.randint(0, 4))
         self.dmg = self.weapon.damage()
         Creature.id += 1
 
@@ -73,12 +73,12 @@ class Fighter(Creature):
         self.name = f"fighter_{Fighter.id}"
         self.health = random.randint(5, 15)
         self.dex = random.randint(1, 3)
-        self.ac = armors[random.randint(0, (len(armors) - 1))].base_ac + self.dex
+        self.ac = Armor(random.randint(0, 3)).base_ac + self.dex
         Fighter.id += 1
 
     def __repr__(self) -> str:
         return f"\nFighter [name: {self.name}, health: {self.health}, lvl: {self.lvl}, exp: {self.exp}, " \
-               f"weapon: {self.weapon.name} with damage: {self.weapon.num_rolls}d{self.weapon.dice}] "
+               f"weapon: {self.weapon.name} with damage: {self.weapon.num_rolls}d{self.weapon.dice}], AC = {self.ac}"
 
 
 if __name__ == "__main__":
