@@ -1,48 +1,34 @@
+import json
 from dice import Dice
+
+with open('config.json') as file:
+    data = json.load(file)
 
 class Weapon:
 
-    def __init__(self, dice, num_rolls, name, rarity, cost):
-        self.dice = dice
-        self.num_rolls = num_rolls
-        self.name = name
-        self.rarity = rarity
-        self.cost = cost
+    def __init__(self, num):
+        self.dice = Dice(data["weapons"][num]["dice"])
+        self.num_rolls = data["weapons"][num]["num_rolls"]
+        self.name = data["weapons"][num]["name"]
+        self.cost = data["weapons"][num]["cost"]
 
-    #@property
     def damage(self):
         return self.dice.roll(self.num_rolls)
 
     def __repr__(self):
-        return f"\n{self.name}, damage: {self.num_rolls}d{self.dice}, rarity: {self.rarity}, cost: {self.cost}"
-
-weapons = [
-    Weapon(Dice(6), 1, "Long sword", 0.5, 100),
-    Weapon(Dice(6), 2, "Wolf Knight's Greatsword", 0.8, 800),
-    Weapon(Dice(12), 1, "Uchigatana", 0.6, 500),
-    Weapon(Dice(4), 2, "Sellsword Twinblades", 0.5, 200),
-    Weapon(Dice(4), 1, "Dagger", 0.4, 50)
-]
+        return f"\n{self.name}, damage: {self.num_rolls}d{self.dice}, cost: {self.cost}"
 
 
-class Armor():
+class Armor:
 
-    def __init__(self, base_ac, category, name):
-        self.base_ac = base_ac
-        self.category = category
-        self.name = name
+    def __init__(self, num):
+        self.base_ac = data["armors"][num]["base_ac"]
+        self.weight = data["armors"][num]["weight"]
+        self.name = data["armors"][num]["name"]
 
     def __repr__(self):
-        return f"\n{self.name}, base AC = {self.base_ac}"
-
-
-armors = [
-    Armor(11, "Light", "Leather armor"),
-    Armor(13, "Medium", "Chain shirt"),
-    Armor(15, "Medium", "Half plate"),
-    Armor(18, "Heavy", "Plate armor")
-]
+        return f"\n{self.name} ({self.weight}), base AC = {self.base_ac}"
 
 
 if __name__ == "__main__":
-    print(weapons[0].damage())
+    print("")
